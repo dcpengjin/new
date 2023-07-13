@@ -1,32 +1,39 @@
-new
-===
+```
+graph LR
+    start((开始)) --> determine_objective{确定教学目标}
+    determine_objective -- 记忆 --> remember(记忆)
+    determine_objective -- 理解 --> understand(理解)
+determine_objective -- 应用 --> apply(应用)
+determine_objective -- 结束教学 --> jiesu(结束教学)
 
-what'snew_is _new
-operation = 'list/';
-database = 'organism';
-organisms = urlread(strcat(base,operation,database));
-organisms = regexpi(organisms,'[^\n]+','match')'; % convert to cellstr
+remember -- 识别和解释数字化虚拟人的定义和特征 --> identify[识别和解释]
+  remember -- 掌握数字化虚拟人的术语和技术名词 --> grasp[掌握术语和技术名词]
+  remember -- 回顾并复习核心概念 --> review[回顾与复习]
+  
+  understand -- 解释数字化虚拟人的工作原理和构成要素 --> explain[解释工作原理和构成要素]
+  understand -- 理解数字化虚拟人的应用场景 --> comprehend[理解应用场景]
+  understand -- 探究与其他领域的关联 --> explore[探究与其他领域的关联]
+  
+  apply -- 设计并创建数字化虚拟人的角色和外观 --> design[设计角色和外观]
+  apply -- 开发交互界面和控制方式 --> develop[开发交互界面和控制方式]
+  apply -- 实施虚拟人动画和声音效果 --> implement[实施动画和声音效果]
+  
+  determine_objective -- 进入下一阶段 --> determine_objective{确定教学目标}
+  
+  determine_objective -- 设计实践性任务 --> practical(设计实践性任务)
+  practical -- 设计并创建虚拟人角色和外观 --> design
+  practical -- 开发交互界面和控制方式 --> develop
+  practical -- 实施虚拟人动画和声音效果 --> implement
+  
+  determine_objective -- 强调分析和评价 --> analyze(强调分析和评价)
+  analyze -- 分析虚拟人系统的组成和性能 --> analyze_components[分析组成和性能]
+  analyze -- 评估系统的效果和可行性 --> evaluate[评估效果和可行性]
+  
+  determine_objective -- 激发创造力 --> creativity(激发创造力)
+  creativity -- 设计具有独特功能和特点的虚拟人系统 --> unique_design[设计独特系统]
+  creativity -- 应用虚拟人技术解决问题或满足需求 --> apply_technology[应用技术解决问题]
+  
+  determine_objective -- 评估和反馈 --> assess(定期评估和反馈)
+  jiesu --> stop((结束))
 
-% organisms is an array of cell strings, one for each organism in the KEGG taxonomic classification database. Find an entry with the string Homo sapiens and notice that the KEGG organism code for Homo sapiens is hsa.
-%regexpi 是正则表达式，首先理解为在organisms 里面去寻找符合条件的字符，并且返回那些符合条件的字符的位置。
-%具体的用法可以先找正则表达式的知识来学习。[^\n]+ 表示非空格，\n表示空格
-% 关于正则表达式的知识很复杂，不过还是可以通过一些基本规则来进行学习： 
-% 比如，正则表达式'Joh?n\w*'表示什么？表示Jo然后是可选的h，然后是n，然后是任意
-%数量的字母，\w 表示字母，*表示任意数量。所以，Jon, John, Jonathan, Johnny
-%都符合上述要求。
-
-hsa_idx = find(~cellfun(@isempty,regexpi(organisms,'Homo sapiens')));
-% cellfun是一个函数，目的是把@后面的函数用于，后面的cell格子里面的每个函数，比如这句话，就是把isempty用于regexpi(organisms,'Homo sapiens') 产生的每一个函数，而organisms又是 urlread直接产生的。
-organisms(hsa_idx)
-ans = 
-'T01001	hsa	Homo sapiens (human)	Eukaryotes;Animals;Vertebrates;Mammals'
-Get the list of pathways for Homo sapiens in KEGG PATHWAY database
-operation = 'list/';
-database = 'pathway/';
-organismCode = 'hsa';
-pathway_list = urlread(strcat(base,operation,database,organismCode));
-pathway_list = regexpi(pathway_list,'[^\n]+','match')'; % convert to cellstr在这个地方，必须指出实际上新的数据库是全部在网上进行操作的。所谓查询命令，就是URL而已。
-Get the total number of pathways.
-num_pathways = numel(pathway_list)
-num_pathways = 
-278
+```

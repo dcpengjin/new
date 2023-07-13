@@ -1,4 +1,4 @@
-```
+```mermaid
 graph LR
     start((开始)) --> determine_objective{确定教学目标}
     determine_objective -- 记忆 --> remember(记忆)
